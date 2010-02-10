@@ -1,7 +1,14 @@
 from sys import exc_info
-from django.core.mail import send_mail
 from django.db import transaction
 from sms.models import OutboundMessage, ContentTypePhoneNumber
+
+# favour django-mailer but fall back to django.core.mail
+if 'mailer' in settings.INSTALLED_APPS:
+    from mailer import send_mail
+elif 'django_mailer' in settings.INSTALLED_APPS:
+    from django_mailer import send_mail
+else:
+    from django.core.mail import send_mail
 
 @transaction.commit_manually
 def send_sms(msg, from_address, recipient_list, 

@@ -1,4 +1,5 @@
 from sys import exc_info
+from django.conf import settings
 from django.db import transaction
 from sms.models import OutboundMessage, ContentTypePhoneNumber
 

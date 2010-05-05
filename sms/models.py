@@ -50,7 +50,7 @@ class ContentTypePhoneNumber(models.Model):
     def __unicode__(self):
         return "%s (%s)" % (self.phone_number, self.carrier.name)
         
-    def save(self, force_insert=False, force_update=False):
+    def save(self, force_insert=False, force_update=False, *args, **kwargs):
         """
         Validate that the phone number being inserted has nothing other
         than [0-9]
